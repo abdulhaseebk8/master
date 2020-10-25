@@ -1,21 +1,146 @@
-import { StatusBar } from 'expo-status-bar';
+//This is an example code for Bottom Navigation//
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import {
+  Button,
+  Text,
+  View,
+  TouchableOpacity,
+  StyleSheet
+} from 'react-native';
+//import all the basic component we have used
+import Ionicons from 'react-native-vector-icons/Ionicons';
+//import Ionicons to show the icon for bottom options
 
-export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
-}
+//import React Navigation
+import {createAppContainer} from 'react-navigation';
+import {createBottomTabNavigator} from 'react-navigation-tabs';
+import {createStackNavigator} from 'react-navigation-stack';
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+import HomeScreen from './pages/HomeScreen';
+import SettingsScreen from './pages/SettingsScreen';
+import DetailsScreen from './pages/DetailsScreen';
+import ProfileScreen from './pages/ProfileScreen';
+import CartScreen from './pages/CartScreen';
+
+
+const CartStack = createStackNavigator(
+  {
+   
+    Cart:{screen:CartScreen,
+      navigationOptions:{
+        header:null,
+        tabBarVisible: false
+      }}
   },
-});
+  {
+    // defaultNavigationOptions: {
+    //   //Header customization of the perticular Screen
+    //   headerStyle: {
+    //     backgroundColor: '#42f44b',
+    //   },
+    //   headerTintColor: '#FFFFFF',
+    //   title: 'Home',
+    //   //Header title
+    // },
+  }
+);
+
+
+const HomeStack = createStackNavigator(
+  {
+    //Defination of Navigaton from home screen
+    Home: { screen: HomeScreen },
+    Details: { screen: DetailsScreen },
+    // Cart:{screen:CartScreen,
+    //   navigationOptions:{
+    //     header:null,
+    //     tabBarVisible: false
+    //   }
+    // }
+  },
+  {
+    defaultNavigationOptions: {
+      header: null,    tabBarVisible: false
+      //Header customization of the perticular Screen
+    
+      //Header title
+    },
+  }
+);
+
+const SettingsStack = createStackNavigator(
+  {
+    //Defination of Navigaton from setting screen
+    Product: { screen: SettingsScreen },
+    Details: { screen: DetailsScreen },
+    Profile: { screen: ProfileScreen },
+    
+  },
+  {
+    defaultNavigationOptions: {
+      //Header customization of the perticular Screen
+      header: null
+    },
+  }
+);
+const App = createBottomTabNavigator(
+  {
+    Home: { screen: HomeStack,
+      },
+    Product: { screen: SettingsStack },
+  
+    Cart:{screen:CartScreen,
+      navigationOptions:{
+        header:null,
+        tabBarVisible: false
+        
+      }
+    
+    
+    },
+    Profile:{screen:ProfileScreen},
+   
+  },
+  {
+    defaultNavigationOptions: ({ navigation }) => ({
+     
+      tabBarIcon: ({ focused, horizontal, tintColor }) => {
+        const { routeName } = navigation.state;
+        let IconComponent = Ionicons;
+        let iconName;
+      
+        if (routeName === 'Home') {
+          iconName = `ios-information-circle${focused ?
+            '' : '-outline'
+          }`;
+        } else if (routeName === 'Product') {
+          iconName = `ios-checkmark-circle${focused ?
+            '' : '-outline'
+          }`;
+        }
+        else if (routeName === 'Profile') {
+          iconName = `person-outline${focused ?
+            '' : '-outline'
+          }`;
+        }
+        else if (routeName === 'Cart') {
+          iconName = `ios-checkmark-circle${focused ?
+            '' : '-outline'
+          }`;
+        }
+        return <IconComponent
+        name={iconName}
+        size={25}
+        color={tintColor}
+      />;
+        
+      },
+      
+    }),
+    tabBarOptions: {
+      activeTintColor: 'blue',
+      inactiveTintColor: 'gray',
+    },
+  }
+);
+export default createAppContainer(App);
