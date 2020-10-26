@@ -119,7 +119,7 @@ const App = createBottomTabNavigator(
           }`;
         }
         else if (routeName === 'Profile') {
-          iconName = `person-outline${focused ?
+          iconName = `ios-information-circle${focused ?
             '' : '-outline'
           }`;
         }
