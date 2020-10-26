@@ -31,10 +31,10 @@ export default class Cartcreen extends React.Component {
   render() {
   
     return (
-      <View style={{marginLeft:wp('2%'),marginRight:wp('2%')}}>
+      <View style={styles.mainview}>
       
           <TouchableOpacity activeOpacity={0.7}  onPress={() =>{this.props.navigation.navigate("Home")}}>
-      <View style={{flexDirection:'row',marginTop:hp('3%')}}>
+      <View style={styles.backicon}>
        <EvilIcons
             name="chevron-left"
             size={33}
@@ -48,13 +48,13 @@ export default class Cartcreen extends React.Component {
           </TouchableOpacity>
        
       <View style={{backgroundColor:'white'}}>
-      <ImageBackground style={{height:hp('29%'),width:wp('95%'),marginTop:hp('0.5%'),marginRight:wp('5%') }} source={require('../assets/sofaimageone.jpg')}></ImageBackground>
+      <ImageBackground style={styles.backgroundimage} source={require('../assets/sofaimageone.jpg')}></ImageBackground>
       </View>
       <View>
       <Text style={{fontSize:hp('3%'),fontWeight:'bold',color:"	#404040"}}>Sofa Baleria </Text>
 
       </View>
-      <View style={{flexDirection:'row',marginTop:hp('1%')}}>
+      <View style={styles.buttonandreview}>
       <Button
 containerStyle={{marginTop:hp('0.25%')}}
 buttonStyle={{color:'white',backgroundColor:'orange',alignItems:'center',width:wp('13%'),height:hp('1%')}}
@@ -65,17 +65,17 @@ titleStyle={{color:'blue',alignItems:'center',color:'white',fontSize:hp('1.5%')}
 
       </View>
 
-      <View style={{flexDirection:'row',marginTop:hp('2%')}}>
+      <View style={styles.rentportion}>
       <Text style={{fontSize:hp('3%'),fontWeight:'bold',color:'grey'}}>Rent</Text>
       <Text style={{fontSize:hp('3%'),fontWeight:'bold',color:'grey',marginLeft:wp('50%')}}>₹799/Month</Text>
       
 </View>
- <View style={{flexDirection:'row',marginTop:hp('2%')}}>
+ <View style={styles.refundableportion}>
       <Text style={{fontSize:hp('2%'),color:'black',color:'#D3D3D3',fontWeight:'bold'}}>Refundable Deposit</Text>
       <Text style={{fontSize:hp('2%'),color:'#D3D3D3',marginLeft:wp('29%'),fontWeight:'bold'}}>₹1899/Month</Text>
       
 </View>
-<Card style={{height:hp('12.5%'),width:wp('91%'),marginTop:hp('3%'),backgroundColor:'#C0B7DB',marginLeft:wp('1%')}}>
+<Card style={styles.uppercard}>
 <View style={{flexDirection:'row'}}>
 <Text style={{fontSize:hp('2%'),color:'white',fontWeight:'bold',marginTop:hp('2%'),marginLeft:wp('3%')}}>{`Get 10% off on this product\nby using coupon code RENT10\n\nView All Offers`}</Text>
 <AntDesign
@@ -87,7 +87,7 @@ color="blue" />
 </View>
 
 </Card>
-<View style={{flexDirection:'row',marginTop:hp('2%')}}>
+<View style={styles.sizeportion}>
 <Text style={{fontSize:hp('3%'),fontWeight:'bold',color:'grey'}}>Select Size</Text>
 <TouchableOpacity
       style={{  marginLeft:hp('6%'),width:wp('10%'),height:hp('5%'),justifyContent: 'center',alignItems: 'center',padding: 10,borderRadius: 100,backgroundColor: '#F0E3E0',borderColor:'blue',borderWidth:hp('0.2')}}>
@@ -115,7 +115,7 @@ color="blue" />
 <TextInput style={{ borderColor:'blue',borderLeftWidth: 0.5,borderRightWidth: 0.5,borderTopWidth:0.5,borderBottomWidth:0.5,height:hp('5%'),marginLeft:wp('5%'),width:wp('50%'),padding:hp('0.8%'),marginBottom:hp('1%')}} placeholder={"Please Enter your Tenure"}/>
 
 </View>
-<View style={{marginTop:hp('1%'),marginBottom:hp('1%'),backgroundColor:'#89cff0',height:hp('13.5%')}}
+<View style={styles.lowerview}
 >
 <View style={{flexDirection:'row'}}><Text style={{color:'white',marginLeft:hp('2%'),marginTop:hp('3%'),fontSize:hp('2.5%'),fontWeight:'bold'}}>{`Rent\n₹5039 for 36Months`}</Text>
 <Button
@@ -135,3 +135,23 @@ titleStyle={{color:'blue',alignItems:'center'}}
     );
   }
 }
+const styles = StyleSheet.create({
+mainview:{marginLeft:wp('2%'),marginRight:wp('2%')
+},
+backicon:{flexDirection:'row',marginTop:hp('3%')
+},
+backgroundimage:{height:hp('29%'),width:wp('95%'),marginTop:hp('0.5%'),marginRight:wp('5%') 
+},
+buttonandreview:{flexDirection:'row',marginTop:hp('1%')},
+rentportion:{flexDirection:'row',marginTop:hp('2%')},
+refundableportion:{flexDirection:'row',marginTop:hp('2%')},
+uppercard:{height:hp('12.5%'),width:wp('91%'),marginTop:hp('3%'),backgroundColor:'#C0B7DB',marginLeft:wp('1%')
+},
+sizeportion:{flexDirection:'row',marginTop:hp('2%')
+},
+lowerview:{marginTop:hp('1%'),marginBottom:hp('1%'),backgroundColor:'#89cff0',height:hp('13.5%')
+}
+
+
+
+});

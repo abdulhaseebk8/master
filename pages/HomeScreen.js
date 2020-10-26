@@ -1,45 +1,3 @@
-// //This is an example code for Bottom Navigation//
-// import React from 'react';
-// //import react in our code.
-// import {
-//   Text,
-//   View,
-//   TouchableOpacity,
-//   StyleSheet
-// } from 'react-native';
-// //import all the basic component we have used
-// import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
-
-// export default class HomeScreen extends React.Component {
-//   //Home Screen to show in Home Option
-//   render() {
-//     return (
-//       <View
-//         style={{
-//           flex: 1,
-//           justifyContent: 'center',
-//           alignItems: 'center'
-//         }}>
-//         <Text
-//           style={{
-//             marginTop: 50,
-//             fontSize: 25
-//           }}>Home!</Text>
-       
-//       </View>
-//     );
-//   }
-// }
-// const styles = StyleSheet.create({
-//   button: {
-//     alignItems: 'center',
-//     backgroundColor: '#DDDDDD',
-//     padding: 10,
-//     width: 300,
-//     marginTop: 16,
-//   },
-// });
-
 
 //This is an example code for Bottom Navigation//
 import React from 'react';
@@ -71,20 +29,13 @@ export default class HomeScreen extends React.Component {
   
     return (
       <View>
- <View style={{height:hp('35%'),width:wp('100%'),backgroundColor:'#89cff0'}}>
-   <Text style={{fontSize:hp('5%'),color:'white',fontWeight:'bold',marginTop:hp('10%'),marginLeft:wp('5%')}}>Rentickle</Text>
-   <Picker style={{marginLeft:hp('2%'),marginRight:hp('32%'),color:'white',fontSize:hp('10%')}} selectedValue = {this.state.city} onValueChange = {this.updateCity}>
+ <View style={styles.background}>
+   <Text style={styles.title}>Rentickle</Text>
+   <Picker style={styles.picker} selectedValue = {this.state.city} onValueChange = {this.updateCity}>
                <Picker.Item label = "Gurgaon" value = "gurgaon" />
               
             </Picker>
-            <View style={{  flexDirection: "row",
-    
-    backgroundColor: "#eaeef0",
-    justifyContent: "space-between",
-    height: hp('7%'),
-   marginLeft:wp("5%"),
-   marginRight:wp("5%"),
-   marginTop:hp("2%"),}}>
+            <View style={styles.iconview}>
             <FontAwesome5
               name="search"
               color="#AEAEAE"
@@ -95,7 +46,7 @@ export default class HomeScreen extends React.Component {
     marginTop:hp('2.5%')}}
             ></FontAwesome5>
             <TextInput
-              style={{ width:wp("80%"),paddingRight:wp("8%"),fontSize:wp("4%") }}
+              style={styles.searchinput}
               placeholder="Search by Furniture,appliances etc."
               
             ></TextInput>
@@ -104,9 +55,9 @@ export default class HomeScreen extends React.Component {
  </View>
 
  <View style={{marginTop:hp('1%')}}>
- <Text style={{fontSize:hp('2%'),color:"#404040",fontWeight:'bold',marginLeft:wp('2%')}}>Our Categories</Text>
- <Card style={{marginTop:hp('1%'),marginLeft:wp('3%'),marginRight:wp('3%'),backgroundColor:"#F7EEED"}}>
- <View style={{}}>
+ <Text style={styles.categories}>Our Categories</Text>
+ <Card style={styles.card}>
+ <View>
  <View style={{  flexDirection: "row",
     
 
@@ -157,14 +108,7 @@ export default class HomeScreen extends React.Component {
 
             </View>
 
-            <View style={{  flexDirection: "row",
-    
-
-    justifyContent: "space-between",
-    height: hp('7%'),
-   marginLeft:wp("5%"),
-   marginRight:wp("10%"),
-   marginTop:hp("2%")}}>
+            <View style={styles.lowercardicons}>
      
      <MaterialCommunityIcons
               name="washing-machine"
@@ -209,7 +153,7 @@ export default class HomeScreen extends React.Component {
             </View>
             </Card>
 
-            <Text style={{fontSize:hp('2%'),color:"#404040",fontWeight:'bold',marginLeft:wp('2%'),marginTop:hp('1%')}}>Trending Products</Text>
+            <Text style={styles.trendingtext}>Trending Products</Text>
             <View style={{flexDirection:'row',marginTop:hp('1%')}}
             >
             <TouchableOpacity  onPress={
@@ -223,7 +167,7 @@ export default class HomeScreen extends React.Component {
 
 
             </View>
-            <View style={{flexDirection:'row',marginTop:hp('0.5%'),marginLeft:wp('2%')}}>
+            <View style={styles.images}>
             <Text style={{color:'grey'}}>Sofa Baleria</Text>
             <Text style={{color:'grey',marginLeft:wp('15%')}}>Dining Table</Text>
             <Text style={{color:'grey',marginLeft:wp('15%')}}>Fabric Sofa</Text>
@@ -250,3 +194,38 @@ export default class HomeScreen extends React.Component {
     );
   }
 }
+
+const styles = StyleSheet.create({
+  background: {
+    height:hp('35%'),width:wp('100%'),backgroundColor:'#89cff0'
+  },
+  title: {
+    fontSize:hp('5%'),color:'white',fontWeight:'bold',marginTop:hp('10%'),marginLeft:wp('5%')
+  },
+  picker:{marginLeft:hp('2%'),marginRight:hp('32%'),color:'white',fontSize:hp('10%')
+},
+iconview:{  flexDirection: "row",
+    
+backgroundColor: "#eaeef0",
+justifyContent: "space-between",
+height: hp('7%'),
+marginLeft:wp("5%"),
+marginRight:wp("5%"),
+marginTop:hp("2%")
+},
+searchinput:{ width:wp("80%"),paddingRight:wp("8%"),fontSize:wp("4%") },
+categories:{fontSize:hp('2%'),color:"#404040",fontWeight:'bold',marginLeft:wp('2%')},
+card:{marginTop:hp('1%'),marginLeft:wp('3%'),marginRight:wp('3%'),backgroundColor:"#F7EEED"},
+lowercardicons:{  flexDirection: "row",
+    
+
+justifyContent: "space-between",
+height: hp('7%'),
+marginLeft:wp("5%"),
+marginRight:wp("10%"),
+marginTop:hp("2%")
+},
+trendingtext:{fontSize:hp('2%'),color:"#404040",fontWeight:'bold',marginLeft:wp('2%'),marginTop:hp('1%')
+},
+images:{flexDirection:'row',marginTop:hp('0.5%'),marginLeft:wp('2%')}
+});
