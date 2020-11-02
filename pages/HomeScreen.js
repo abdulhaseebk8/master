@@ -31,6 +31,8 @@ export default class HomeScreen extends React.Component {
       <View>
  <View style={styles.background}>
    <Text style={styles.title}>Rentickle</Text>
+   <Text style={{fontWeight: 'bold'}}> {this.props.navigation.getParam('abc')} </Text>
+
    <Picker style={styles.picker} selectedValue = {this.state.city} onValueChange = {this.updateCity}>
                <Picker.Item label = "Gurgaon" value = "gurgaon" />
               
@@ -125,7 +127,7 @@ export default class HomeScreen extends React.Component {
               name="storage"
               color="#588BAE"
               size={20}
-              style={{ marginLeft: "3%",
+              style={{ marginLeft: "3.75%",
     marginRight: "2%",
     marginBottom: "2%",
     marginTop:hp('2.5%')}}

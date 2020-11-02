@@ -5,11 +5,42 @@ import {
   Text,
   View,
   TouchableOpacity,
-  StyleSheet
+  StyleSheet,AsyncStorage,Alert,Button
 } from 'react-native';
 //import all the basic component we have used
 
 export default class SettingsScreen extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+        data: [],
+        refreshing: true,
+        nav:props.navigation
+      
+    }
+}
+
+// async  componentDidMount() {
+//   const { params } = this.nav.state;
+   
+//   const userid = params ? params.userid : null;
+
+
+// }
+
+
+
+
+displayData = async ()=>{  
+  try{  
+    let user = await AsyncStorage.getItem('user');  
+    // this.setState({abc:user})
+    alert(user);  
+  }  
+  catch(error){  
+    alert(error)  
+  }  
+}  
   //Setting Screen to show in Setting Option
   render() {
     return (
@@ -19,6 +50,8 @@ export default class SettingsScreen extends React.Component {
           justifyContent: 'center',
           alignItems: 'center'
         }}>
+                <Text style={{fontWeight: 'bold'}}> {this.props.navigation.getParam('userid')} </Text>
+
         <Text
           style={{
             marginTop: 50,
@@ -26,6 +59,11 @@ export default class SettingsScreen extends React.Component {
           }}>
           Setting!
         </Text>
+        <TouchableOpacity onPress ={this.displayData}>  
+          <Text>Click to display data</Text>  
+        </TouchableOpacity>  
+    
+
         <View
           style={{
             flex: 1,
@@ -60,6 +98,11 @@ export default class SettingsScreen extends React.Component {
             }>
             <Text>Open Cart Screen</Text>
           </TouchableOpacity>
+          <Button
+    title="Login"
+     onPress={() =>  this.props.navigation.navigate('Home',{"abc":'hellooooooo'})}
+    
+    />
         </View>
       </View>
     );

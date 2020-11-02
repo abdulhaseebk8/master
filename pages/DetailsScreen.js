@@ -2,14 +2,18 @@
 import React from 'react';
 //import react in our code.
 import {
-  Text,
-  View,
-  TouchableOpacity,
-  StyleSheet
+  StyleSheet,
+    SafeAreaView,
+    FlatList,
+    View,
+    Image,
+    TouchableOpacity
 } from 'react-native';
 //import all the basic component we have used
 
 export default class DetailsScreen extends React.Component {
+
+  
   //Detail Screen to show from any Open detail button
   render() {
     return (
