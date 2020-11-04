@@ -71,7 +71,7 @@ const HomeStack = createStackNavigator(
 const SettingsStack = createStackNavigator(
   {
     //Defination of Navigaton from setting screen
-    Product: { screen: SettingsScreen },
+	Settings: { screen: SettingsScreen },
     Details: { screen: DetailsScreen },
     Profile: { screen: ProfileScreen },
     

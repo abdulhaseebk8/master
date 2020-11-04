@@ -19,7 +19,7 @@ export default class ProfileScreen extends React.Component {
         data: [],
         refreshing: true,
         nav:props.navigation,
-        userid:''
+        userid:'',userurl:'',userheight:''
 
     }
 }
@@ -49,13 +49,16 @@ fetchCats() {
         }).catch(e => console.log(e));
 }
 
-renderItemComponent = (data) =>
-    <TouchableOpacity style={styles.container}    onPress={() =>  this.state.nav.navigate('Product',{"userid":data.item.id})}>
+renderItemComponent = (data) =>{
+	return(
+
+    <TouchableOpacity style={styles.container}    onPress={() =>  {this.props.navigation.navigate('Settings',{userid:data.item.id,userurl:data.item.url,userheight:data.item.height},   AsyncStorage.setItem('width',data.item.width) ) }}>
         <Image style={styles.image} source={{ uri: data.item.url }} />
         <Text >{data.item.id}</Text>
        
     </TouchableOpacity>
-
+	)
+}
 ItemSeparator = () => <View style={{
     height: 2,
     backgroundColor: "rgba(0,0,0,0.5)",

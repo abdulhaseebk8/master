@@ -5,9 +5,10 @@ import {
   Text,
   View,
   TouchableOpacity,
-  StyleSheet,AsyncStorage,Alert,Button
+  StyleSheet,AsyncStorage,Alert,Button,Image
 } from 'react-native';
 //import all the basic component we have used
+import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
 
 export default class SettingsScreen extends React.Component {
   constructor(props) {
@@ -15,9 +16,10 @@ export default class SettingsScreen extends React.Component {
     this.state = {
         data: [],
         refreshing: true,
-        nav:props.navigation
+        nav:props.navigation.state,usename:''
       
     }
+	console.log("props",this.props.navigation.state.params.userid,this.props.navigation.state.params.userurl,this.props.navigation.state.params.userheight)
 }
 
 // async  componentDidMount() {
@@ -29,13 +31,21 @@ export default class SettingsScreen extends React.Component {
 // }
 
 
-
+async componentDidMount() {
+  const usernameGet = await AsyncStorage.getItem('width');
+  console.log(usernameGet)
+  if (usernameGet) {
+    this.setState({ username: usernameGet });
+  } else {
+    this.setState({ username: false });
+  }
+}
 
 displayData = async ()=>{  
   try{  
-    let user = await AsyncStorage.getItem('user');  
+    let user = await AsyncStorage.getItem('width');  
     // this.setState({abc:user})
-    alert(user);  
+    alert(this.state.nav.key);  
   }  
   catch(error){  
     alert(error)  
@@ -50,60 +60,24 @@ displayData = async ()=>{
           justifyContent: 'center',
           alignItems: 'center'
         }}>
-                <Text style={{fontWeight: 'bold'}}> {this.props.navigation.getParam('userid')} </Text>
+           <Image style={{marginLeft:wp('5%'),height:hp('20%'),width:wp('28%'),marginRight:wp('2%')}} source={{ uri: this.props.navigation.state.params.userurl }} />
 
-        <Text
+        {/* <Text
           style={{
-            marginTop: 50,
+     
             fontSize: 25
           }}>
           Setting!
-        </Text>
-        <TouchableOpacity onPress ={this.displayData}>  
-          <Text>Click to display data</Text>  
-        </TouchableOpacity>  
-    
+        </Text> */}
+        <Text style={{fontWeight: 'bold'}}> {this.props.navigation.state.params.userid} </Text>
+        <Text style={{fontWeight: 'bold'}}> {this.props.navigation.state.params.userurl} </Text>
+        <Text style={{fontWeight: 'bold'}}> {this.props.navigation.state.params.userheight} </Text>
+        <Text style={{fontWeight: 'bold'}}> {this.state.username} </Text>
 
-        <View
-          style={{
-            flex: 1,
-            justifyContent: 'center',
-            alignItems: 'center'
-          }}>
-          <TouchableOpacity
-            style={styles.button}
-            onPress={
-              () => this.props.navigation.navigate('Home')
-            }>
-            <Text>Go to Home Tab</Text>
-          </TouchableOpacity>
-          <TouchableOpacity
-            style={styles.button}
-            onPress={
-              () => this.props.navigation.navigate('Details')
-            }>
-            <Text>Open Detail Screen</Text>
-          </TouchableOpacity>
-          <TouchableOpacity
-            style={styles.button}
-            onPress={
-              () => this.props.navigation.navigate('Profile')
-            }>
-            <Text>Open Profile Screen</Text>
-          </TouchableOpacity>
-          <TouchableOpacity
-            style={styles.button}
-            onPress={
-              () => this.props.navigation.navigate('Cart')
-            }>
-            <Text>Open Cart Screen</Text>
-          </TouchableOpacity>
-          <Button
-    title="Login"
-     onPress={() =>  this.props.navigation.navigate('Home',{"abc":'hellooooooo'})}
-    
-    />
-        </View>
+
+
+
+      
       </View>
     );
   }
@@ -115,5 +89,9 @@ const styles = StyleSheet.create({
     padding: 10,
     width: 300,
     marginTop: 16,
+  },
+  image: {
+    height: '5%',
+  
   },
 });
